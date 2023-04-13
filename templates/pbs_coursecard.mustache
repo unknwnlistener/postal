@@ -32,15 +32,15 @@
         <div class="course-summary">
             {{{summary}}}
         </div>
-    {{#hasprogress}}
-        <div class="d-flex align-items-start">
-            <div class="card-footer dashboard-card-footer border-0 bg-white w-100">
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="{{{progress}}}" style="width: {{{progress}}}%" aria-valuemin="0" aria-valuemax="{{{progress}}}"></div>
+        {{#hasprogress}}
+            <div class="d-flex align-items-start">
+                <div class="card-footer dashboard-card-footer border-0 bg-white w-100">
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="{{{progress}}}" style="width: {{{progress}}}%" aria-valuemin="0" aria-valuemax="{{{progress}}}"></div>
+                    </div>
+                    <p class="mb-0">{{#str}}completepercent, block_myoverview, {{progress}}{{/str}}</p>
                 </div>
-                <p class="mb-0">{{#str}}completepercent, block_myoverview, {{progress}}{{/str}}</p>
             </div>
-        </div>
         {{/hasprogress}}
 
         {{#hascontacts}}
@@ -56,7 +56,7 @@
                 {{/contacts}}
             </div>
         {{/hascontacts}}
-        <a class="btn btn-primary view-course-btn" title="Open Course" href="{{config.wwwroot}}/course/view.php?id={{{id}}}">Open Course</a>
     </div>
+    <a class="btn btn-primary view-course-btn" title="{{#str}}viewcourse, theme_pbs{{/str}}" href="{{config.wwwroot}}/course/view.php?id={{{id}}}">{{#str}}viewcourse, theme_pbs{{/str}}</a>
 
 </div>
