@@ -48,14 +48,14 @@ function theme_pbs_get_main_scss_content($theme)
         $scss .= file_get_contents($CFG->dirroot . '/theme/boost/scss/preset/default.scss');
     }
 
-    // Moove scss.
-    $moovevariables = file_get_contents($CFG->dirroot . '/theme/pbs/scss/pbs/_variables.scss');
-    $moove = file_get_contents($CFG->dirroot . '/theme/pbs/scss/default.scss');
+    // PBS scss.
+    $postalvariables = file_get_contents($CFG->dirroot . '/theme/pbs/scss/pbs/_variables.scss');
+    $postal = file_get_contents($CFG->dirroot . '/theme/pbs/scss/default.scss');
 
     // Combine them together 
-    $moovecss = $moovevariables . "\n" . $scss . "\n" . $moove;
+    $postalcss = $postalvariables . "\n" . $scss . "\n" . $postal;
 
-    return $moovecss;
+    return $postalcss;
 
     // // Pre CSS - this is loaded AFTER any prescss from the setting but before the main scss
     // $pre = file_get_contents($CFG->dirroot . '/theme/pbs/scss/pre.scss');
@@ -124,4 +124,55 @@ function theme_pbs_get_pre_scss($theme)
     }
 
     return $scss;
+}
+
+/**
+ * Serves any files associated with the theme settings.
+ *
+ * @param stdClass $course
+ * @param stdClass $cm
+ * @param context $context
+ * @param string $filearea
+ * @param array $args
+ * @param bool $forcedownload
+ * @param array $options
+ * @return mixed
+ */
+function theme_pbs_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options = array())
+{
+    $theme = theme_config::load('pbs');
+
+    if (
+        $context->contextlevel == CONTEXT_SYSTEM &&
+        ($filearea === 'logo' || $filearea === 'loginbgimg' || $filearea == 'favicon')
+    ) {
+        $theme = theme_config::load('pbs');
+        // By default, theme files must be cache-able by both browsers and proxies.
+        if (!array_key_exists('cacheability', $options)) {
+            $options['cacheability'] = 'public';
+        }
+        return $theme->setting_file_serve($filearea, $args, $forcedownload, $options);
+    }
+
+    if ($context->contextlevel == CONTEXT_SYSTEM && preg_match("/^sliderimage[1-9][0-9]?$/", $filearea) !== false) {
+        return $theme->setting_file_serve($filearea, $args, $forcedownload, $options);
+    }
+
+    if ($context->contextlevel == CONTEXT_SYSTEM && $filearea === 'marketing1icon') {
+        return $theme->setting_file_serve('marketing1icon', $args, $forcedownload, $options);
+    }
+
+    if ($context->contextlevel == CONTEXT_SYSTEM && $filearea === 'marketing2icon') {
+        return $theme->setting_file_serve('marketing2icon', $args, $forcedownload, $options);
+    }
+
+    if ($context->contextlevel == CONTEXT_SYSTEM && $filearea === 'marketing3icon') {
+        return $theme->setting_file_serve('marketing3icon', $args, $forcedownload, $options);
+    }
+
+    if ($context->contextlevel == CONTEXT_SYSTEM && $filearea === 'marketing4icon') {
+        return $theme->setting_file_serve('marketing4icon', $args, $forcedownload, $options);
+    }
+
+    send_file_not_found();
 }

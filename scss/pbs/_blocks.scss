@@ -26,7 +26,7 @@
     }
 }
 
-.block .block-cards .moove-card-footer {
+.block .block-cards .pbs-card-footer {
     padding: .8rem;
 
     .progress {
@@ -47,8 +47,8 @@
             padding: 0.5rem 0.8rem;
 
             .btn.btn-link.btn-icon {
-                background-color: $brand-primary;
-                color: #fff;
+                color: $black;
+                background-color: #fff;
                 border-radius: 50%;
                 height: 24px !important;
                 width: 24px !important;
@@ -56,7 +56,7 @@
         }
     }
 
-    .moove-card-footer {
+    .pbs-card-footer {
         padding: .8rem;
 
         .progress {

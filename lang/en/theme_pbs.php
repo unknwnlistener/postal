@@ -26,16 +26,10 @@
 defined('MOODLE_INTERNAL') || die();
 
 // A description shown in the admin theme selector
-$string['choosereadme'] = 'Theme PBS is a child theme of Boost. It is customized to fit the requirements of Postal Bible School learning website.';
+$string['choosereadme'] = 'Theme PBS is a child theme of Boost and derives its designs from the Moove theme with additional customisation. It is customized to fit the requirements of Postal Bible School, Ireland learning website.';
 // The name of our plugin
 $string['pluginname'] = 'PBS Theme';
 
-// The name of the second tab in the theme settings
-$string['advancedsettings'] = 'Advanced settings';
-// The brand colour setting
-$string['brandcolor'] = 'Brand colour';
-// The brand colour setting description
-$string['brandcolor_desc'] = 'The accent colour.';
 // Name of the settings pages
 $string['configtitle'] = 'PBS settings';
 // Name of the first settings tab
@@ -47,6 +41,18 @@ $string['favicon'] = 'Custom favicon';
 $string['favicondesc'] = 'Upload your own favicon.  It should be an .ico file.';
 $string['loginbgimg'] = 'Login page background';
 $string['loginbgimg_desc'] = 'Upload your custom background image for the login page.';
+
+$string['currentinparentheses'] = '(current)';
+$string['region-side-pre'] = 'Right';
+$string['prev_section'] = 'Previous section';
+$string['next_section'] = 'Next section';
+$string['themedevelopedby'] = 'This theme was developed by';
+$string['pbsfull'] = 'Postal Bible School';
+$string['access'] = 'Access';
+$string['prev_activity'] = 'Previous activity';
+$string['next_activity'] = 'Next activity';
+$string['donthaveanaccount'] = 'Don\'t have an account?';
+$string['signinwith'] = 'Sign in with';
 
 // Colours
 $string['brandcolor'] = 'Brand colour';

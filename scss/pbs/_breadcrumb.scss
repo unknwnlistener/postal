@@ -1,7 +1,11 @@
 .breadcrumb {
     justify-content: flex-end;
 
-    .breadcrumb-item + .breadcrumb-item::before {
+    .breadcrumb-item {
+        padding-right: 0.5rem;
+    }
+
+    .breadcrumb-item+.breadcrumb-item::before {
         font: normal normal normal 12px/1 FontAwesome;
         text-rendering: auto;
         -webkit-font-smoothing: antialiased;
@@ -9,9 +13,11 @@
         content: "\f054";
         display: flex;
         align-items: center;
+        justify-content: center;
         white-space: nowrap;
         height: 100%;
-        color: #ced4da;
+        padding-right: 1rem;
+        color: $gray-700;
     }
 }
 

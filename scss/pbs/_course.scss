@@ -42,8 +42,9 @@
         justify-content: end;
     }
 
-    #next-activity .text {
-        text-align: right;
+    #next-activity .text,
+    #prev-activity .text {
+        text-align: center;
     }
 
     #next-activity .text .nav_guide,
@@ -89,6 +90,7 @@
 
 @include media-breakpoint-down(md) {
     .activity-navigation {
+
         .larrow,
         .rarrow {
             display: none;
