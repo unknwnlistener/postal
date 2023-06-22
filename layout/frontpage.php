@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * A drawer based layout for the pbs theme.
+ * Frontpage layout for the pbs theme.
  *
  * @package    theme_pbs
  * @copyright  2022 Willian Mano {@link https://conecti.me}
@@ -56,28 +56,25 @@ $hasblocks = (strpos($blockshtml, 'data-block=') !== false || !empty($addblockbu
 if (!$hasblocks) {
     $blockdraweropen = false;
 }
-
-$themesettings = new \theme_pbs\util\settings();
-
-if (!$themesettings->enablecourseindex) {
-    $courseindex = '';
-} else {
-    $courseindex = core_course_drawer();
-}
-
+$courseindex = core_course_drawer();
 if (!$courseindex) {
     $courseindexopen = false;
 }
 
-$bodyattributes = $OUTPUT->body_attributes($extraclasses);
 $forceblockdraweropen = $OUTPUT->firstview_fakeblocks();
 
 $secondarynavigation = false;
 $overflow = '';
 if ($PAGE->has_secondary_navigation()) {
-    $tablistnav = $PAGE->has_tablist_secondary_navigation();
-    $moremenu = new \core\navigation\output\more_menu($PAGE->secondarynav, 'nav-tabs', true, $tablistnav);
-    $secondarynavigation = $moremenu->export_for_template($OUTPUT);
+    $secondary = $PAGE->secondarynav;
+
+    if ($secondary->get_children_key_list()) {
+        $tablistnav = $PAGE->has_tablist_secondary_navigation();
+        $moremenu = new \core\navigation\output\more_menu($PAGE->secondarynav, 'nav-tabs', true, $tablistnav);
+        $secondarynavigation = $moremenu->export_for_template($OUTPUT);
+        $extraclasses[] = 'has-secondarynavigation';
+    }
+
     $overflowdata = $PAGE->secondarynav->get_overflow_menu_data();
     if (!is_null($overflowdata)) {
         $overflow = $overflowdata->export_for_template($OUTPUT);
@@ -94,17 +91,7 @@ $regionmainsettingsmenu = $buildregionmainsettings ? $OUTPUT->region_main_settin
 $header = $PAGE->activityheader;
 $headercontent = $header->export_for_template($renderer);
 
-// Add course management if the user has the capabilities for it.
-$coursecat = core_course_category::user_top();
-$coursemanagemenu = [];
-if ($coursecat && ($category = core_course_category::get_nearest_editable_subcategory($coursecat, ['create']))) {
-    // The user has the capability to create course.
-    $coursemanagemenu['newcourseurl'] = new moodle_url('/course/edit.php', ['category' => $category->id]);
-}
-if ($coursecat && ($category = core_course_category::get_nearest_editable_subcategory($coursecat, ['manage']))) {
-    // The user has the capability to manage the course category.
-    $coursemanagemenu['manageurl'] = new moodle_url('/course/management.php', ['categoryid' => $category->id]);
-}
+$bodyattributes = $OUTPUT->body_attributes($extraclasses);
 
 $templatecontext = [
     'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
@@ -125,11 +112,17 @@ $templatecontext = [
     'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu),
     'overflow' => $overflow,
     'headercontent' => $headercontent,
-    'addblockbutton' => $addblockbutton,
-    'enablecourseindex' => $themesettings->enablecourseindex,
-    'headeractionbuttons' =>  !empty($PAGE->get_header_actions()) ? $coursemanagemenu : []
+    'addblockbutton' => $addblockbutton
 ];
+
+$themesettings = new \theme_pbs\util\settings();
 
 $templatecontext = array_merge($templatecontext, $themesettings->footer());
 
-echo $OUTPUT->render_from_template('theme_pbs/drawers', $templatecontext);
+if (isloggedin()) {
+    echo $OUTPUT->render_from_template('theme_pbs/drawers', $templatecontext);
+} else {
+    $templatecontext = array_merge($templatecontext, $themesettings->frontpage());
+
+    echo $OUTPUT->render_from_template('theme_pbs/frontpage', $templatecontext);
+}

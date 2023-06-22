@@ -94,6 +94,20 @@
     <div id="page" data-region="mainpage" data-usertour="scroller" class="drawers drag-container {{#courseindexopen}}show-drawer-left{{/courseindexopen}} {{#blockdraweropen}}show-drawer-right{{/blockdraweropen}}">
 
         {{{ output.full_header }}}
+        {{#headeractionbuttons}}
+            <div class="pbs-container-fluid">
+                    <div class="header-action">
+                        <div class="course-manage-btns">
+                            {{#newcourseurl}}
+                                <a class="btn btn-primary" href="{{newcourseurl}}">{{#str}}newcourse, core{{/str}}</a>
+                            {{/newcourseurl}}
+                            {{#manageurl}}
+                                <a class="btn btn-primary" href="{{manageurl}}">{{#str}}managecourses, core{{/str}}</a>
+                            {{/manageurl}}
+                        </div>
+                    </div>
+            </div>
+        {{/headeractionbuttons}}
         <div id="topofscroll" class="main-inner">
             <div class="drawer-toggles d-flex">
                 {{#courseindex}}
