@@ -70,6 +70,7 @@ $string['enablecourseindex'] = 'Enable course index';
 $string['enablecourseindex_desc'] = 'You can show/hide course index navigation';
 $string['viewcourse'] = "View course";
 $string['continue'] = "Continue";
+$string['totop'] = "Scroll To Top";
 
 // Preset files setting
 $string['presetfiles'] = 'Additional theme preset files';
@@ -123,7 +124,7 @@ $string['slidertitledesc'] = 'Add the slide\'s title.';
 $string['slidercaption'] = 'Slider caption';
 $string['slidercaptiondesc'] = 'Add a caption for your slide';
 
-$string['numbersfrontpage'] = 'Show site numberss';
+$string['numbersfrontpage'] = 'Show site numbers';
 $string['numbersfrontpagedesc'] = 'If enabled, display the number of active users and courses in the frontpage.';
 $string['numbersfrontpagecontent'] = 'Numbers section content';
 $string['numbersfrontpagecontentdesc'] = 'You can add any text to the left side of the numbers section';

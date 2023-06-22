@@ -231,7 +231,8 @@ class settings
         $templatecontext['faqenabled'] = false;
 
         if ($this->faqcount) {
-            for ($i = 1; $i <= $this->faqcount; $i++) {
+
+            for ($i = 1; $i <= (int)$this->faqcount; $i++) {
                 $faqquestion = 'faqquestion' . $i;
                 $faqanswer = 'faqanswer' . $i;
 
@@ -246,7 +247,7 @@ class settings
                 ];
             }
 
-            if (count($templatecontext['faq'])) {
+            if (isset($templatecontext['faq']) && count($templatecontext['faq'])) {
                 $templatecontext['faqenabled'] = true;
             }
         }

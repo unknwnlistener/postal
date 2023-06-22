@@ -18,6 +18,9 @@
             }
         }
     }
+    .navbar-brand > .logo {
+        max-height: calc(50px - (0.25rem * 2));
+    }
 }
 
 .secondary-navigation {
@@ -25,7 +28,6 @@
     padding-top: 0;
     padding-bottom: 0;
     z-index: 1021;
-
 
     .navigation {
         background-color: inherit;
@@ -109,11 +111,11 @@
             }
 
             .view-more {
-                font-size: .9rem;
+                font-size: 0.9rem;
             }
 
             .content-item-footer .timestamp {
-                font-size: .9rem;
+                font-size: 0.9rem;
                 line-height: inherit;
             }
 
@@ -147,12 +149,12 @@
     @extend .scale-up-show;
 }
 
-[data-region=right-hand-drawer].drawer {
+[data-region="right-hand-drawer"].drawer {
     top: 70px;
     height: calc(100% - 70px);
 
     .footer-container {
-        padding: .5rem 0;
+        padding: 0.5rem 0;
         background-color: #fff;
         color: #1d2125;
     }

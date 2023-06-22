@@ -1,6 +1,23 @@
 .relative {
     position: relative;
 }
+
+#goto-top-link {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    display: block;
+    .btn {
+        height: 36px;
+        width: 36px;
+        background-color: #a4a9b3;
+        border-radius: 50%;
+        .icon {
+            margin-left: -2px;
+        }
+    }
+}
+
 .pagelayout-frontpage,
 .pagelayout-coursecategory {
     .dashboard-card {

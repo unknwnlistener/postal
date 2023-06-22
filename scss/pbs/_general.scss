@@ -70,8 +70,19 @@ a {
     flex-grow: 1;
 }
 
-@include media-breakpoint-up(md) {
+.btn {
+    font-weight: 500;
+    &.btn-secondary {
+        color: $brand-primary;
+        outline: 1px solid $brand-primary;
+        background-color: unset;
+        &:hover {
+            background-color: $gray-200;
+        }
+    }
+}
 
+@include media-breakpoint-up(md) {
     .pagelayout-standard #page.drawers .main-inner,
     body.limitedwidth #page.drawers .main-inner,
     #page.drawers .main-inner,
@@ -95,7 +106,6 @@ a {
 }
 
 @include media-breakpoint-down(md) {
-
     .pagelayout-standard #page.drawers .main-inner,
     body.limitedwidth #page.drawers .main-inner,
     #page.drawers .main-inner,
